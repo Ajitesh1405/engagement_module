@@ -1,6 +1,8 @@
 const ROUTES ={
-    BASE_API: 'api/v1',
-
+    BASE_API: '/api/v1',
+    SIGNUP: '/signup',
+    SIGNIN: '/signin',
+    AUTH_TEST: '/authtest'
 }
 
 const PARAMS ={

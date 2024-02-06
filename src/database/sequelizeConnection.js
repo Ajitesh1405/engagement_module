@@ -3,10 +3,12 @@ const ENV_VAR = require('../common/Config')
 
 
 const sequelize = new Sequelize(ENV_VAR.dbName, ENV_VAR.dbUser, ENV_VAR.dbPass, {
-    host: 'localhost',
+    host: ENV_VAR.dbHost,
     dialect: 'mssql',
+    port: ENV_VAR.PORT,
     dialectOptions: {
         instanceName: 'SQLEXPRESS',
+        options: { encrypt: false },
     },
     
 });

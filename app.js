@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 const ENV_VAR = require('./src/common/Config');
 const app = express();
-const PORT = ENV_VAR.PORT || 3000;
+const PORT = 3000;
 const sequelize = require('./src/database/sequelizeConnection');
 const fs = require('fs');
 const path = require('path');
@@ -21,6 +21,7 @@ const RoleMaster = require('./src/models/roleMaster');
 const Tax = require('./src/models/tax');
 const template = require('./src/models/template');
 const WorkScope = require('./src/models/workScope');
+const cookieParser = require('cookie-parser');
 
 
 app.use(
@@ -29,10 +30,10 @@ app.use(
     })
 )
 
-app.use(fileUpload()); //middleware to get files from req
+// app.use(fileUpload()); //middleware to get files from req
 
 app.use(bodyParser.json());
-app.use(express.json());
+app.use(cookieParser())
 
 app.use(function (req, res, next) {
     console.debug(
@@ -51,7 +52,7 @@ try {
     const appRouter = require('./routes/index')
     app.use(appRouter);
 } catch (error) {
-    console.error("Error in api routes")
+    console.error("Error in api routes ", error)
 }
 
 Object.keys(sequelize.models).forEach((modelName) => {

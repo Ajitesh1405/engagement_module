@@ -1,4 +1,7 @@
 const express = require('express');
+
+const { createNewUser, signin, checkToken } = require("../src/controller/auth")
+
 const router = express.Router();
 
 router.get('/', (req, res)=>{
@@ -8,15 +11,30 @@ router.get('/', (req, res)=>{
 
 const {
     ROUTES: {
-        BASE_API
+        BASE_API,
+        SIGNUP,
+        SIGNIN,
+        AUTH_TEST
     },
     PARAMS
 
 } = require('../src/common/constant');
+const { sign } = require('jsonwebtoken');
 
 
-router.get( BASE_API, ()=>{
+router.post(SIGNUP, createNewUser);
+
+router.post(SIGNIN, signin);
+
+// router.get(AUTH_TEST, checkToken, (req, res)=>{
+//     return res.json({
+//         msg: "Auth test was successful!"
+//     })
+// })
+
+router.get(BASE_API, (req, res)=>{
     console.log("hello")
+    return res.status(200).json({})
 });
 
 module.exports = router
