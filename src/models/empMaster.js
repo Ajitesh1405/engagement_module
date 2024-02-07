@@ -49,7 +49,7 @@ const EmpMaster = sequelize.define('EmpMaster',{
     },
 
     contact_number: { 
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: true, 
     },
 

@@ -1,6 +1,6 @@
 const EmpMaster = require("../models/empMaster")
-const jwt = require("jsonwebtoken")
 const ENV_VAR = require('../common/Config');
+const {createToken} = require("./tokenManage")
 
 async function createNewUser(req, res) {
     const body = req.body
@@ -29,22 +29,6 @@ async function createNewUser(req, res) {
         console.log("Error while creating entry: ",err)
         return res.status(400).json({error: err})
     })
-}
-
-function createToken(user) {
-    return jwt.sign({
-        ...user
-    }, ENV_VAR.JWT_SECRET_KEY)
-}
-
-function checkToken (req, res, next) {
-    try{
-        const token=jwt.verify(req.cookies?.token, ENV_VAR.JWT_SECRET_KEY)
-    } catch(error) {
-        return res.json(error)
-    }
-
-    next()
 }
 
 async function signin(req, res) {
@@ -76,5 +60,4 @@ async function signin(req, res) {
 module.exports = {
     createNewUser,
     signin,
-    checkToken
 }
