@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const ENV_VAR = require('../common/Config')
+const ENV_VAR = require('../common/envConfig')
 
 
 const sequelize = new Sequelize(ENV_VAR.dbName, ENV_VAR.dbUser, ENV_VAR.dbPass, {
