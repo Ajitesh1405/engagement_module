@@ -3,6 +3,7 @@ const express = require('express');
 const { createNewUser, signin } = require("../src/controller/auth")
 const { updateUserDetails } = require("../src/controller/userUpdate")
 const { checkAuth } = require("../src/middlewares/auth")
+const dropDownRouter = require("./dropdown")
 
 const router = express.Router();
 
@@ -16,14 +17,18 @@ const {
         BASE_API,
         SIGNUP,
         SIGNIN,
-        AUTH_TEST
+        AUTH_TEST,
+        BASE_DROPDOWN_URL
     },
     PARAMS
 
 } = require('../src/common/constant');
 // const { sign } = require('jsonwebtoken');
 
+// Dropdown service route
+router.use(BASE_DROPDOWN_URL, checkAuth, dropDownRouter)
 
+// Auth Service route
 router.post(SIGNUP, createNewUser);
 
 router.post(SIGNIN, signin);
