@@ -13,9 +13,44 @@ const CompanyMaster = sequelize.define('CompanyMaster',{
         allowNull: true,
     },
 
-    branch: {
+    branch_name: {
         type: Sequelize.STRING,
         allowNull: true,
+    },
+
+    company_type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+
+    service_line_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+    
+    major_buisness_line_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+
+    billable_service_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+
+    company_email: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    
+    company_contact_number: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+
+    pan_no: { 
+        type: Sequelize.STRING,
+        allowNull: true, 
     },
 
     address: {
@@ -28,43 +63,23 @@ const CompanyMaster = sequelize.define('CompanyMaster',{
         allowNull: true, 
     },
 
-    pan_no: { 
-        type: Sequelize.STRING,
-        allowNull: true, 
-    },
-
-    email: { 
-        type: Sequelize.STRING,
-        allowNull: true, 
-    },
-
-    contact_number: { 
-        type: Sequelize.INTEGER,
-        allowNull: true, 
-    },
-
     company_logo: { 
         type: Sequelize.STRING,
         allowNull: true, 
     },
 
-    billing_service: { 
-        type: Sequelize.STRING,
-        allowNull: true, 
-    },
-
-    org_type_id: { 
+    client_id: { 
         type: Sequelize.INTEGER,
         allowNull: true, 
     },
     
-    created_by: { 
-        type: Sequelize.STRING,
+    created_at: { 
+        type: Sequelize.DATE,
         allowNull: true, 
     },
 
-    updated_by: { 
-        type: Sequelize.STRING,
+    updated_at: { 
+        type: Sequelize.DATE,
         allowNull: true, 
     },
 

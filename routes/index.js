@@ -6,6 +6,7 @@ const SignupController = require('../src/controller/signup');
 const MiddleWare = require('../src/middlewares/currentUser');
 const User = require('../src/controller/user');
 const ClientDetails = require('../src/controller/clientDetails');
+const BillingEntityDetails = require('../src/controller/billingEntityDetails');
 
 // static route
 router.get('/', (req, res)=>{
@@ -19,7 +20,8 @@ const {
         SIGN_UP,
         CREATE_USER,
         USER_LOGIN,
-        CLIENT_DETAILS
+        CLIENT_DETAILS,
+        BILLING_ENTITY_DETAILS,
     },
     PARAMS
 
@@ -39,5 +41,7 @@ router.put(BASE_API + CREATE_USER, User.createUser);
 router.get(BASE_API + USER_LOGIN, User.userLogin);
 
 router.get(BASE_API + CLIENT_DETAILS, ClientDetails.clientMaster);
+
+router.get(BASE_API + BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
 
 module.exports = router

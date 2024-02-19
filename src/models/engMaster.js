@@ -13,17 +13,17 @@ const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
         allowNull: true,
     },
 
-    background_client_entity: {
-        type: Sequelize.STRING,
-        allowNull: true,
+    eng_company_entity_id: {  //company id
+        type: Sequelize.INTEGER,
+        allowNull: true, 
     },
 
-    background_client_service_eng: {
-        type: Sequelize.STRING,
-        allowNull: true,
+    billing_id: { 
+        type: Sequelize.INTEGER,
+        allowNull: true, 
     },
 
-    emp_id: { 
+    eng_emp_id: { 
         type: Sequelize.INTEGER,
         allowNull: true, 
     },
@@ -38,12 +38,37 @@ const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
         allowNull: true, 
     },
 
+    financial_year: {
+        type: Sequelize.DATE,
+        allowNull: true,
+    },
+
+    background_client_entity: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+
+    background_billable_service_eng: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+
     start_date: { 
         type: Sequelize.DATE,
         allowNull: true, 
     },
 
     deliverables_date: { 
+        type: Sequelize.DATE,
+        allowNull: true, 
+    },
+
+    created_at: { 
+        type: Sequelize.DATE,
+        allowNull: true, 
+    },
+
+    updated_at: { 
         type: Sequelize.DATE,
         allowNull: true, 
     },

@@ -22,6 +22,9 @@ const RoleMaster = require('./src/models/roleMaster');
 const Tax = require('./src/models/tax');
 const template = require('./src/models/template');
 const WorkScope = require('./src/models/workScope');
+const BillableService = require('./src/models/billableService');
+const MajorBuisnessLine = require('./src/models/majorBuisnessLine');
+const ServiceLine = require('./src/models/serviceLine');
 
 
 app.use(
@@ -57,7 +60,7 @@ try {
 }
 
 Object.keys(sequelize.models).forEach((modelName) => {
-    // console.log("DB models::", modelName);
+    console.log("DB models::", modelName);
 });
 
 try {
