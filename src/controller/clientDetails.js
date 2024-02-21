@@ -15,7 +15,7 @@ exports.clientMaster = async (req, res)=>{
             return {
                 id: client.client_id,
                 name: client.client_name
-            }
+                            }
         })
         const response = await utility.sendResponse(clientObject, STATUS_CODE.SUCCESS )
 

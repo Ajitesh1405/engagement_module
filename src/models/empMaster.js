@@ -2,12 +2,17 @@ const Sequelize = require('sequelize');
 const sequelize = require('../database/sequelizeConnection');
 
 const EmpMaster = sequelize.define('EmpMaster',{
-    emp_id: { 
+    id: { 
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
 
+    employee_number: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    
     first_name: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -44,7 +49,7 @@ const EmpMaster = sequelize.define('EmpMaster',{
     },
 
     contact_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true,
     },
 
@@ -53,7 +58,7 @@ const EmpMaster = sequelize.define('EmpMaster',{
         allowNull: true,
     },
 
-    onsite_location: {
+    country: {
         type: Sequelize.STRING,
         allowNull: true,
     },
@@ -63,17 +68,17 @@ const EmpMaster = sequelize.define('EmpMaster',{
         allowNull: true,
     },
 
-    service_line_id: {
+    service_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
     },
 
-    major_buisness_line_id: {
+    job_title: { 
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: true, 
     },
 
-    role_id: { 
+    skill_tags: { 
         type: Sequelize.INTEGER,
         allowNull: true, 
     },
@@ -97,16 +102,6 @@ const EmpMaster = sequelize.define('EmpMaster',{
         type: Sequelize.STRING,
         allowNull: true, 
     },
-
-    created_at: { 
-        type: Sequelize.DATE,
-        allowNull: true, 
-    },
-
-    updated_at: { 
-        type: Sequelize.DATE,
-        allowNull: true, 
-    },
     
     updated_by: { 
         type: Sequelize.STRING,
@@ -114,7 +109,7 @@ const EmpMaster = sequelize.define('EmpMaster',{
     },
 
     status: { 
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true, 
     },
 }

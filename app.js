@@ -22,9 +22,7 @@ const RoleMaster = require('./src/models/roleMaster');
 const Tax = require('./src/models/tax');
 const template = require('./src/models/template');
 const WorkScope = require('./src/models/workScope');
-const BillableService = require('./src/models/billableService');
-const MajorBuisnessLine = require('./src/models/majorBuisnessLine');
-const ServiceLine = require('./src/models/serviceLine');
+const ServiceMaster = require('./src/models/serviceMaster');
 
 
 app.use(

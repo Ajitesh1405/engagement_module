@@ -12,17 +12,7 @@ const RoleMaster = sequelize.define('RoleMaster', {
         type: Sequelize.STRING,
         allowNull: true,
     },
-
-    company_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-    },
-
-    isActive: {
-        type: Sequelize.BOOLEAN,
-        allowNull: true
-    },
-
+    
     updated_by: {
         type: Sequelize.STRING,
         allowNull: true

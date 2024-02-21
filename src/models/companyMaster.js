@@ -23,32 +23,27 @@ const CompanyMaster = sequelize.define('CompanyMaster',{
         allowNull: true,
     },
 
-    service_line_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-    },
-    
-    major_buisness_line_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-    },
-
-    billable_service_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-    },
-
     company_email: {
         type: Sequelize.STRING,
         allowNull: true,
     },
-    
-    company_contact_number: {
+
+    service_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+
+    company_reg_number: {
         type: Sequelize.INTEGER,
         allowNull: true,
     },
 
     pan_no: { 
+        type: Sequelize.STRING,
+        allowNull: true, 
+    },
+
+    tan_no: { 
         type: Sequelize.STRING,
         allowNull: true, 
     },
@@ -70,16 +65,6 @@ const CompanyMaster = sequelize.define('CompanyMaster',{
 
     client_id: { 
         type: Sequelize.INTEGER,
-        allowNull: true, 
-    },
-    
-    created_at: { 
-        type: Sequelize.DATE,
-        allowNull: true, 
-    },
-
-    updated_at: { 
-        type: Sequelize.DATE,
         allowNull: true, 
     },
 
