@@ -5,6 +5,7 @@ const ROUTES ={
     USER_LOGIN: '/user_login',
     CLIENT_DETAILS: '/client_details',
     BILLING_ENTITY_DETAILS: '/billing_entity_details',
+    PERSON_INCHARGE_DETAILS: '/person_inchagrge_details',
 
 }
 
@@ -27,6 +28,7 @@ const ERROR_MESSAGE = {
     USER_LOGIN_FAIL: "User Login Failed",
     CLIENT_DETAILS_NOT_FOUND: "Client Details Not found",
     COMPANY_DETAILS_NOT_FOUND: "Company Details Not Found",
+    PERSON_INCHARGE_DETAILS_NOT_FOUND: "Person Incharge Details Not Found",
     INVALID_CREDENTIALS: "Invalid Credentials"
 }
 

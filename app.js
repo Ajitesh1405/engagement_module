@@ -23,6 +23,9 @@ const Tax = require('./src/models/tax');
 const template = require('./src/models/template');
 const WorkScope = require('./src/models/workScope');
 const ServiceMaster = require('./src/models/serviceMaster');
+const SkillTags = require('./src/models/skillTags');
+const Qualifications = require('./src/models/qualifications');
+const CompanyService = require('./src/models/companyServices')
 
 
 app.use(
@@ -50,12 +53,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-try {
-    const appRouter = require('./routes/index')
-    app.use(appRouter);
-} catch (error) {
-    console.error("Error in api routes", error.message)
-}
+
+const appRouter = require('./routes/index')
+app.use(appRouter);
 
 Object.keys(sequelize.models).forEach((modelName) => {
     console.log("DB models::", modelName);

@@ -1,23 +1,24 @@
-const ClientMaster  = require('../models/clientMaster');
+const ClientMaster = require('../models/clientMaster');
 const Utility = require('../common/utility');
 const { STATUS_CODE, ERROR_MESSAGE, } = require('../common/constant');
 const utility = new Utility();
 
-exports.clientMaster = async (req, res)=>{
+exports.clientMaster = async (req, res) => {
     try {
         const clientDetails = await ClientMaster.findAll({
-            attributes: ['client_id', 'client_name']
-        },
-            {
-            raw: true
-        });
+            attributes: ['client_id', 'client_name', 'key_person_name'],
+            raw: true,
+        },);
+
+        console.log("client details", clientDetails)
         const clientObject = clientDetails.map((client) => {
             return {
                 id: client.client_id,
-                name: client.client_name
-                            }
+                name: client.client_name,
+                client_representative: client.key_person_name
+            }
         })
-        const response = await utility.sendResponse(clientObject, STATUS_CODE.SUCCESS )
+        const response = await utility.sendResponse(clientObject, STATUS_CODE.SUCCESS)
 
         res.send(response)
     } catch (error) {

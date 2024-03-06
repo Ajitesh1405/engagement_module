@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 const SignupController = require('../src/controller/signup');
-const MiddleWare = require('../src/middlewares/currentUser');
+// const MiddleWare = require('../src/middlewares/currentUser');
 const User = require('../src/controller/user');
 const ClientDetails = require('../src/controller/clientDetails');
 const BillingEntityDetails = require('../src/controller/billingEntityDetails');
@@ -34,7 +34,7 @@ router.get( BASE_API, ()=>{
 
 router.post(BASE_API + SIGN_UP, SignupController.signUp);
 
-router.get(BASE_API +"/current", MiddleWare.currentUser);
+// router.get(BASE_API +"/current", MiddleWare.currentUser);
 
 router.put(BASE_API + CREATE_USER, User.createUser);
 
@@ -43,5 +43,7 @@ router.get(BASE_API + USER_LOGIN, User.userLogin);
 router.get(BASE_API + CLIENT_DETAILS, ClientDetails.clientMaster);
 
 router.get(BASE_API + BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
+
+// router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 
 module.exports = router

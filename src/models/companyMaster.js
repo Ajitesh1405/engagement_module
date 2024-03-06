@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../database/sequelizeConnection');
 
 const CompanyMaster = sequelize.define('CompanyMaster',{
-    comapny_id: { 
+    company_id: { 
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -28,13 +28,8 @@ const CompanyMaster = sequelize.define('CompanyMaster',{
         allowNull: true,
     },
 
-    service_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-    },
-
     company_reg_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true,
     },
 
@@ -74,5 +69,14 @@ const CompanyMaster = sequelize.define('CompanyMaster',{
     },
 }
 );
+
+// CompanyMaster.sync({force: true})
+//   .then(() => {
+//     console.log('User table created or updated successfully.');
+//   })
+//   .catch(error => {
+//     console.error('Error syncing the User table:', error);
+//   });
+
 
 module.exports = CompanyMaster

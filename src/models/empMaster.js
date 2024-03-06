@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database/sequelizeConnection');
 
-const EmpMaster = sequelize.define('EmpMaster',{
+const EmpMaster = sequelize.define('EmpMasters',{
     id: { 
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -83,8 +83,13 @@ const EmpMaster = sequelize.define('EmpMaster',{
         allowNull: true, 
     },
 
+    qualification: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+
     reporting_manager_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true,
     },
 
@@ -113,6 +118,6 @@ const EmpMaster = sequelize.define('EmpMaster',{
         allowNull: true, 
     },
 }
-);
+)
 
 module.exports = EmpMaster

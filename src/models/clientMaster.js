@@ -53,23 +53,13 @@ const ClientMaster = sequelize.define('ClientMaster', {
         allowNull: true, 
     },
 
-    person_incharge_name: { 
-        type: Sequelize.STRING,
-        allowNull: true, 
-    },
-
-    person_incharge_email: { 
-        type: Sequelize.STRING,
-        allowNull: true, 
-    },
-
-    person_incharge_contact_number: { 
+    person_incharge_id: { 
         type: Sequelize.STRING,
         allowNull: true, 
     },
 
     billable_financial_year: { 
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: true, 
     },
 
@@ -88,17 +78,17 @@ const ClientMaster = sequelize.define('ClientMaster', {
         allowNull: true, 
     },
 
-    deal_origination_person: { 
+    deal_origination_person_id: { 
         type: Sequelize.INTEGER,
         allowNull: true, 
     },
 
-    sales_incharge_person: { 
+    sales_incharge_person_id: { 
         type: Sequelize.INTEGER,
         allowNull: true, 
     },
 
-    operation_incharge_person: { 
+    operation_incharge_person_id: { 
         type: Sequelize.INTEGER,
         allowNull: true, 
     },
