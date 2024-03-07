@@ -22,6 +22,7 @@ const {
         USER_LOGIN,
         CLIENT_DETAILS,
         BILLING_ENTITY_DETAILS,
+        BILLIN_SERVICES_DETAILS
     },
     PARAMS
 
@@ -43,6 +44,8 @@ router.get(BASE_API + USER_LOGIN, User.userLogin);
 router.get(BASE_API + CLIENT_DETAILS, ClientDetails.clientMaster);
 
 router.get(BASE_API + BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
+
+router.get(BASE_API + BILLIN_SERVICES_DETAILS, BillingEntityDetails.billableServicesDetails)
 
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 
