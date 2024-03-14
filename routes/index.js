@@ -7,6 +7,7 @@ const SignupController = require('../src/controller/signup');
 const User = require('../src/controller/user');
 const ClientDetails = require('../src/controller/clientDetails');
 const BillingEntityDetails = require('../src/controller/billingEntityDetails');
+const Engagement = require('../src/controller/engagement');
 
 // static route
 router.get('/', (req, res)=>{
@@ -22,7 +23,8 @@ const {
         USER_LOGIN,
         CLIENT_DETAILS,
         BILLING_ENTITY_DETAILS,
-        BILLIN_SERVICES_DETAILS
+        BILLING_SERVICES_DETAILS,
+        ENGAGEMENT_EMPLOYEE_NAME
     },
     PARAMS
 
@@ -45,7 +47,9 @@ router.get(BASE_API + CLIENT_DETAILS, ClientDetails.clientMaster);
 
 router.get(BASE_API + BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
 
-router.get(BASE_API + BILLIN_SERVICES_DETAILS, BillingEntityDetails.billableServicesDetails)
+router.get(BASE_API + BILLING_SERVICES_DETAILS, BillingEntityDetails.billableServicesDetails);
+
+router.get(BASE_API + ENGAGEMENT_EMPLOYEE_NAME,  Engagement.engagementTeam);
 
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 

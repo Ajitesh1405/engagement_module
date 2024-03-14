@@ -22,4 +22,11 @@ const SkillTags = sequelize.define('SkillTags',{
     }
 });
 
+SkillTags.associate = function(models) {
+    SkillTags.hasMany(models.EmpMaster, {
+      foreignKey: 'skill_tags',
+      as: 'skillId'
+    });
+};
+
 module.exports = SkillTags;

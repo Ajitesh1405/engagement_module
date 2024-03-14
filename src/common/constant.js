@@ -6,7 +6,8 @@ const ROUTES ={
     CLIENT_DETAILS: '/client_details',
     BILLING_ENTITY_DETAILS: '/billing_entity_details',
     PERSON_INCHARGE_DETAILS: '/person_inchagrge_details',
-    BILLIN_SERVICES_DETAILS: '/billable_services_details'
+    BILLING_SERVICES_DETAILS: '/billable_services_details',
+    ENGAGEMENT_EMPLOYEE_NAME: '/engagement_employees'
 
 }
 

@@ -118,6 +118,13 @@ const EmpMaster = sequelize.define('EmpMasters',{
         allowNull: true, 
     },
 }
-)
+);
+
+EmpMaster.associate = function(models) {
+    EmpMaster.hasMany(models.SkillTag, {
+      foreignKey: 'skill_id',
+      as: 'skillTags'
+    });
+};
 
 module.exports = EmpMaster
