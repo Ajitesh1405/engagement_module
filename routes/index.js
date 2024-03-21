@@ -39,17 +39,17 @@ router.post(BASE_API + SIGN_UP, SignupController.signUp);
 
 // router.get(BASE_API +"/current", MiddleWare.currentUser);
 
-router.put(BASE_API + CREATE_USER, User.createUser);
+router.put(CREATE_USER, User.createUser);
 
-router.get(BASE_API + USER_LOGIN, User.userLogin);
+router.get(USER_LOGIN, User.userLogin);
 
-router.get(BASE_API + CLIENT_DETAILS, ClientDetails.clientMaster);
+router.get(CLIENT_DETAILS, ClientDetails.clientMaster);
 
-router.get(BASE_API + BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
+router.get(BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
 
-router.get(BASE_API + BILLING_SERVICES_DETAILS, BillingEntityDetails.billableServicesDetails);
+router.get(BILLING_SERVICES_DETAILS, BillingEntityDetails.billableServicesDetails);
 
-router.get(BASE_API + ENGAGEMENT_EMPLOYEE_NAME,  Engagement.engagementTeam);
+router.get(ENGAGEMENT_EMPLOYEE_NAME,  Engagement.engagementTeam);
 
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 

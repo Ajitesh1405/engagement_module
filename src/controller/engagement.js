@@ -2,6 +2,7 @@ const EmpMaster = require('../models/empMaster');
 const Utility = require('../common/utility');
 const { STATUS_CODE, ERROR_MESSAGE, } = require('../common/constant');
 const SkillTags = require('../models/skillTags');
+const EngRoles = require('../models/engRoles');
 const sequelize = require('../database/sequelizeConnection');
 const DBQueries = require('../database/dbQueries');
 const utility = new Utility();
@@ -16,7 +17,13 @@ exports.engagementTeam = async (req, res)=>{
             }
         );
         
+        const roles = await EngRoles.findAll({
+            attributes: ['role_id', 'role_name'],
+            raw: true
+        })
+        
         const response = await utility.sendResponse(employees, STATUS_CODE.SUCCESS);
+        response.roles = roles
 
         res.send(response)
     } catch (error) {
