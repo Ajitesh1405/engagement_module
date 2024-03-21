@@ -6,7 +6,7 @@ const SignupController = require('../src/controller/signup');
 // const MiddleWare = require('../src/middlewares/currentUser');
 const User = require('../src/controller/user');
 const ClientDetails = require('../src/controller/clientDetails');
-const BillingEntityDetails = require('../src/controller/billingEntityDetails');
+const Billing = require('../src/controller/billing');
 const Engagement = require('../src/controller/engagement');
 
 // static route
@@ -24,7 +24,10 @@ const {
         CLIENT_DETAILS,
         BILLING_ENTITY_DETAILS,
         BILLING_SERVICES_DETAILS,
-        ENGAGEMENT_EMPLOYEE_NAME
+        ENGAGEMENT_EMPLOYEE_NAME,
+        BILLING_EXPENSES,
+        BILLING_TEMPLATES,
+        CREATE_ENGAGEMENT
     },
     PARAMS
 
@@ -45,11 +48,17 @@ router.get(BASE_API + USER_LOGIN, User.userLogin);
 
 router.get(BASE_API + CLIENT_DETAILS, ClientDetails.clientMaster);
 
-router.get(BASE_API + BILLING_ENTITY_DETAILS,  BillingEntityDetails.billingEntityDetails);
+router.get(BASE_API + BILLING_ENTITY_DETAILS,  Billing.billingEntityDetails);
 
-router.get(BASE_API + BILLING_SERVICES_DETAILS, BillingEntityDetails.billableServicesDetails);
+router.get(BASE_API + BILLING_SERVICES_DETAILS, Billing.billableServicesDetails);
 
 router.get(BASE_API + ENGAGEMENT_EMPLOYEE_NAME,  Engagement.engagementTeam);
+
+router.get(BASE_API + BILLING_EXPENSES, Billing.expenses)
+
+router.get(BASE_API + BILLING_TEMPLATES, Billing.billingTemplates)
+
+router.post(BASE_API + CREATE_ENGAGEMENT, Engagement.createEngagement)
 
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 

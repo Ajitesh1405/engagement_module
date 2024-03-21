@@ -9,7 +9,7 @@ const sequelize = require('./src/database/sequelizeConnection');
 const fs = require('fs');
 const path = require('path');
 const BillingFrequency = require('./src/models/billingFrequency');
-const BillingMaster = require('./src/models/billingMaster');
+const BillingMaster = require('./src/models/billingHistory');
 const ClientCompanyDetails = require('./src/models/clientCompDetails');
 const ClientMaster = require('./src/models/clientMaster');
 const CompanyMaster = require('./src/models/companyMaster');
@@ -25,8 +25,9 @@ const WorkScope = require('./src/models/workScope');
 const ServiceMaster = require('./src/models/serviceMaster');
 const SkillTags = require('./src/models/skillTags');
 const Qualifications = require('./src/models/qualifications');
-const CompanyService = require('./src/models/companyServices')
-
+const CompanyService = require('./src/models/companyServices');
+// const AdminExpense = require('./src/models/adminExpenseTable');
+const BillingMilestone = require('./src/models/billingMilestone');
 
 app.use(
     bodyParser.urlencoded({
@@ -58,7 +59,7 @@ const appRouter = require('./routes/index')
 app.use(appRouter);
 
 Object.keys(sequelize.models).forEach((modelName) => {
-    console.log("DB models::", modelName);
+    // console.log("DB models::", modelName);
 });
 
 try {

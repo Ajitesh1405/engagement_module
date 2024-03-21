@@ -1,3 +1,4 @@
+const moment = require('moment');
 class Utility {
     constructor() { }
 
@@ -17,6 +18,18 @@ class Utility {
         }
         return respObj
     }
+    
+    static toDate(date) {
+        // if (!date || !(date instanceof Date)) {
+        //     throw new Error('Invalid input: Expected a Date object');
+        // }
+        const momentDate = moment(date)
+        const FormattedDate = momentDate.format('YYYY-MM-DDTHH:mm:ss');
+
+        // Return the formatted date string
+        return FormattedDate;
+    }
 }
 
 module.exports = Utility
+

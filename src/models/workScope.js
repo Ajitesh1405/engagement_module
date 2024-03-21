@@ -8,6 +8,11 @@ const WorkScope = sequelize.define('WorkScope',{
         autoIncrement: true,
     },
 
+    eng_id:{
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+
     heading: { 
         type: Sequelize.STRING,
         allowNull: true

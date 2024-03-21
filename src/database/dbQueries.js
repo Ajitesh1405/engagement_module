@@ -21,13 +21,21 @@ module.exports = {
 
 	GET_ENGAGEMENT_EMPOYEES: () =>{
 		return `SELECT
-			CONCAT(emp_table.first_name, emp_table.middle_name, emp_table.last_name) as employee_name,
-			skill_table.skill_name AS role_name
+			LTRIM(RTRIM(
+				CONCAT(
+					emp_table.first_name,
+					CASE 
+						WHEN 
+							emp_table.middle_name IS NOT NULL AND emp_table.middle_name <> '' 
+							THEN ' ' + emp_table.middle_name + ' '
+						ELSE 
+							' '
+					END,
+					emp_table.last_name
+				)
+			)) AS employee_name,
+			emp_table.employee_number AS employee_id
 			FROM
-				EmpMasters AS emp_table
-			INNER JOIN
-				SkillTags AS skill_table
-			ON
-				emp_table.skill_tags = skill_table.skill_id`
+				EmpMasters AS emp_table`
 	}
 }

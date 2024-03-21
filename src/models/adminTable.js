@@ -1,28 +1,22 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database/sequelizeConnection');
 
-const BillingFrequency = sequelize.define('BillingFrequency',{
-    frequency_id: { 
+const AdminTable = sequelize.define('AdminTable',{
+    admin_id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
     },
 
-    frequency_name: { 
+    admin_email:{
         type: Sequelize.STRING,
         allowNull: true
     },
 
-    frequency_occurence:{
+    admin_password:{
         type: Sequelize.STRING,
         allowNull: true
-    },
+    }
+});
 
-    status: { 
-        type: Sequelize.INTEGER,
-        allowNull: true, 
-    },
-}
-);
-
-module.exports = BillingFrequency
+module.exports = AdminTable

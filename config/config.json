@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "ajitesh",
+    "password": "ajitesh123",
+    "database": "Engagement",
+    "host": "localhost",
+    "dialect": "mssql"
+  }
+}

@@ -33,11 +33,6 @@ const EmpMaster = sequelize.define('EmpMasters',{
         allowNull: true,
     },
 
-    password: { 
-        type: Sequelize.STRING,
-        allowNull: true,
-    },
-
     gender: {
         type: Sequelize.STRING,
         allowNull: true,
