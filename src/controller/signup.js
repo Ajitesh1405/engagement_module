@@ -1,13 +1,17 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const sequelize = require('../database/sequelizeConnection');
 const authentication = require('../common/authentication')
+const EmpMaster = require('../models/empMaster')
+const Admin = require('../models/adminTable');
+const error = require('express-upload/lib/error');
 const Authentication = new authentication();
 
 exports.signUp = async (req, res) => {
     const t = await sequelize.transaction();
     try {
-        const { email, firstName, password } = req.body;
-        const requiredFields = ['email', 'firstName', 'password'];
+        const { email, password } = req.body;
+        const requiredFields = ['email', 'password'];
 
         requiredFields.forEach(field => {
             if (!req.body[field]) {
@@ -16,18 +20,27 @@ exports.signUp = async (req, res) => {
         });
 
         const user = await EmpMaster.findOne({
-            where: { email: req.body.email },
+            where: { email: email },
             raw: true
         });
 
-        if (user) {
-            throw new Error("Email already in use")
+        if (!user) {
+            throw new Error("User is not an employee")
         };
 
-        const employee = await EmpMaster.create({
-            email: email,
-            first_name: firstName,
-            password: password
+        const admin = await Admin.findOne({
+            where : { admin_email: email }
+        })
+
+        if(admin){
+            throw new Error('Already a user')
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const adminDetails = await Admin.create({
+            admin_email: req.body.email,
+            admin_password: hashedPassword
         },
         {
             transaction: t
@@ -36,10 +49,11 @@ exports.signUp = async (req, res) => {
             raw: true
         }
         );
-        const empDetails = employee.dataValues
+    
+        const adminObject = adminDetails.dataValues?.admin_email;
 
         // Generate JWT token
-        const userJwt = await Authentication.generateJwtToken(empDetails);
+        const userJwt = await Authentication.generateJwtToken(adminObject);
         console.log("token", userJwt)
 
         await t.commit();

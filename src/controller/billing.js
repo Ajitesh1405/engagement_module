@@ -7,6 +7,7 @@ const Sequelize = require('sequelize');
 const BillingMilestone = require('../models/billingMilestone');
 const Currency = require('../models/currency');
 const BillingFrequency = require('../models/billingFrequency');
+const Taxes = require('../models/tax')
 const utility = new Utility();
 
 exports.billingEntityDetails = async (req, res) => {
@@ -117,7 +118,16 @@ exports.billingTemplates = async(req, res) =>{
                 raw: true
             });
 
-            console.log("currency", currency)
+
+            const response = await utility.sendResponse(currency, STATUS_CODE.SUCCESS)
+            res.send(response)
+        }
+
+        if(req.query.option == 'tax'){
+            const currency = await Taxes.findAll({
+                attributes: ['tax_name', 'tax_percent'],
+                raw: true
+            });
 
             const response = await utility.sendResponse(currency, STATUS_CODE.SUCCESS)
             res.send(response)
@@ -136,7 +146,6 @@ exports.billingTemplates = async(req, res) =>{
         }
 
     } catch (error) {
-        console.log("error", error.message);
         const response = await utility.errorResponse(ERROR_MESSAGE.BILLING_TEMPLATE, STATUS_CODE.NOT_FOUND)
         res.send(response)
     }
