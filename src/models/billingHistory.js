@@ -22,6 +22,11 @@ const BillingMaster = sequelize.define('BillingMaster',{
         type: Sequelize.INTEGER,
         allowNull: true
     },
+    
+    billing_freq_date:{
+        type: Sequelize.DATE,
+        allowNull: true,
+    },
 
     scope_id:{
         type: Sequelize.INTEGER,

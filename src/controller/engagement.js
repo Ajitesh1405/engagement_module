@@ -67,6 +67,7 @@ exports.createEngagement = async(req, res)=>{
             deliverables_date: Utility.toDate(body.deliverables_date), //date
             currency_id: body.currency_id,
             frequency_id: body.frequency_id,
+            billing_freq_date: body.billing_freq_date,
             scope_of_work: body.scope_of_work,
             deliverables: body.deliverables,
             delivery_date: body.delivery_date,

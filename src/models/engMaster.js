@@ -103,6 +103,11 @@ const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
         allowNull: true
     },
 
+    billing_freq_date:{
+        type: Sequelize.DATE,
+        allowNull: true,
+    },
+
     scope_of_work:{
         type: Sequelize.STRING,
         allowNull: true
