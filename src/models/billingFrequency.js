@@ -13,7 +13,7 @@ const BillingFrequency = sequelize.define('BillingFrequency',{
         allowNull: true
     },
 
-    frequency_occurence:{
+    frequency_occurrence:{
         type: Sequelize.STRING,
         allowNull: true
     },

@@ -17,7 +17,7 @@ const Currency = require('./src/models/currency');
 const EmpMaster = require('./src/models/empMaster');
 const EngMaster = require('./src/models/engMaster');
 const EngRoles = require('./src/models/engRoles');
-const OperartionalExpenses = require('./src/models/operationalExpenses');
+const OperationalExpenses = require('./src/models/operationalExpenses');
 const RoleMaster = require('./src/models/roleMaster');
 const Tax = require('./src/models/tax');
 const template = require('./src/models/template');
@@ -26,7 +26,7 @@ const ServiceMaster = require('./src/models/serviceMaster');
 const SkillTags = require('./src/models/skillTags');
 const Qualifications = require('./src/models/qualifications');
 const CompanyService = require('./src/models/companyServices');
-// const AdminExpense = require('./src/models/adminExpenseTable');
+const AdminExpense = require('./src/models/adminExpenseTable');
 const BillingMilestone = require('./src/models/billingMilestone');
 
 app.use(

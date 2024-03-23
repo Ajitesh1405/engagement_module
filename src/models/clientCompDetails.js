@@ -8,6 +8,11 @@ const ClientCompDetails = sequelize.define('ClientCompDetails',{
         autoIncrement: true,
     },
 
+    eng_id: { 
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+
     client_id: { 
         type: Sequelize.INTEGER,
         allowNull: true

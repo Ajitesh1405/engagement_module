@@ -7,7 +7,8 @@ const Sequelize = require('sequelize');
 const BillingMilestone = require('../models/billingMilestone');
 const Currency = require('../models/currency');
 const BillingFrequency = require('../models/billingFrequency');
-const Taxes = require('../models/tax')
+const Taxes = require('../models/tax');
+const { options } = require('../../routes');
 const utility = new Utility();
 
 exports.billingEntityDetails = async (req, res) => {
@@ -69,7 +70,7 @@ exports.billableServicesDetails = async (req, res) => {
 
     } catch (error) {
         console.log("error", error.message);
-        const response = await utility.errorResponse(ERROR_MESSAGE.COMPANY_DETAILS_NOT_FOUND, STATUS_CODE.NOT_FOUND)
+        const response = await utility.errorResponse(ERROR_MESSAGE.PROVIDE_COMP_DETAILS, STATUS_CODE.NOT_FOUND)
         res.send(response)
     }
 }
@@ -125,7 +126,7 @@ exports.billingTemplates = async(req, res) =>{
 
         if(req.query.option == 'tax'){
             const currency = await Taxes.findAll({
-                attributes: ['tax_name', 'tax_percent'],
+                attributes: ['tax_id','tax_name', 'tax_percent'],
                 raw: true
             });
 
@@ -133,9 +134,9 @@ exports.billingTemplates = async(req, res) =>{
             res.send(response)
         }
         
-        else{
+        if (!req.query.option){
             const billingFrequency = await BillingFrequency.findAll({
-                attributes: ['frequency_name', 'frequency_occurence'],
+                attributes: ['frequency_name', 'frequency_occurrence'],
                 raw: true
             });
 

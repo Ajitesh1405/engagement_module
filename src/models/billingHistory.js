@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database/sequelizeConnection');
 
-const BillingMaster = sequelize.define('BillingMaster',{
+const BillingHistory = sequelize.define('BillingHistory',{
     billing_master_id: { 
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -80,4 +80,4 @@ const BillingMaster = sequelize.define('BillingMaster',{
 }
 );
 
-module.exports = BillingMaster
+module.exports = BillingHistory

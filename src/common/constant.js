@@ -39,6 +39,7 @@ const ERROR_MESSAGE = {
     USER_LOGIN_FAIL: "User Login Failed",
     CLIENT_DETAILS_NOT_FOUND: "Client Details Not found",
     COMPANY_DETAILS_NOT_FOUND: "Company Details Not Found",
+    PROVIDE_COMP_DETAILS: "Please provide company Id",
     EXPENSE_NOT_FOUND: "Expenses not found",
     BILLING_TEMPLATE: "Either currency or Billing Frequency not found",
     PERSON_INCHARGE_DETAILS_NOT_FOUND: "Person Incharge Details Not Found",

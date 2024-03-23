@@ -13,7 +13,7 @@ const ClientMaster = sequelize.define('ClientMaster', {
         allowNull: true,
     },
 
-    organisation_type: { 
+    organization_type: { 
         type: Sequelize.STRING,
         allowNull: true,
     },
@@ -53,7 +53,7 @@ const ClientMaster = sequelize.define('ClientMaster', {
         allowNull: true, 
     },
 
-    person_incharge_id: { 
+    key_person_incharge_id: { 
         type: Sequelize.STRING,
         allowNull: true, 
     },
@@ -63,7 +63,7 @@ const ClientMaster = sequelize.define('ClientMaster', {
         allowNull: true, 
     },
 
-    date_of_first_onbaording: { 
+    date_of_first_onboarding: { 
         type: Sequelize.DATE,
         allowNull: true, 
     },

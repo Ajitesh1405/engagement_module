@@ -9,7 +9,7 @@ const SkillTags = require('../models/skillTags');
 const Qualifications = require('../models/qualifications');
 const ClientMaster = require('../models/clientMaster');
 const AdminExpense = require('../models/adminExpenseTable');
-const BillingMilestine = require('../models/billingMilestone');
+const BillingMilestone = require('../models/billingMilestone');
 const xlsx = require('xlsx');
 const path = require('path');
 
@@ -34,11 +34,13 @@ async function insertDataFromSheet() {
     const raw_data=await xslxToJson(file_path)
     for (key in raw_data) {
         const data = raw_data[key]
+
+        console.log("dataaa", data)
         // console.log(data.employee_number)
 
         // await ClientMaster.create({
         //     client_name: data.client_name,
-        //     organisation_type: data.organisation_type,
+        //     organization_type: data.organization_type,
         //     industry_type: data.industry_type,
         //     client_email: data.client_email,
         //     registered_address: data.registered_address,
@@ -46,12 +48,12 @@ async function insertDataFromSheet() {
         //     key_person_email: data.key_person_email,
         //     key_person_designation: data.key_person_designation,
         //     key_person_gender: data.key_person_gender,
-        //     person_incharge_id: data.person_incharge_id,
+        //     key_person_incharge_id: data.key_person_incharge_id,
         //     billable_financial_year: data.billable_financial_year,
-        //     date_of_first_onbaording: data.date_of_first_onbaording,
+        //     date_of_first_onboarding: data.date_of_first_onboarding,
         //     company_id: data.company_id,
         //     region: data.region,
-        //     deal_origination_person_id: data.organisation_person,
+        //     deal_origination_person_id: data.deal_origination_person,
         //     sales_incharge_person_id: data.sales_incharge_person,
         //     operation_incharge_person_id: data.operation_incharge_person,
         //     updated_by: 'Vinayak Puri',
@@ -65,12 +67,11 @@ async function insertDataFromSheet() {
         //     branch_name: data.branch_name,
         //     company_type: data.company_type,
         //     company_email: data.company_email,
-        //     service_id: null,
         //     company_reg_number: data.company_reg_number,
-        //     pan_no: data.pan_no,
-        //     tan_no: data.tan_no,
+        //     pan_no: data.pan_number,
+        //     tan_no: data.tan_number,
         //     address: data.address,
-        //     gst_no: data.gst_no,
+        //     gst_no: data.gst_number,
         //     company_logo: null,
         //     client_id: null,
         //     status: 1
@@ -99,7 +100,7 @@ async function insertDataFromSheet() {
         //     service_id: data.service_id,
         //     job_title: data.job_title,
         //     skill_tags: data.skill_tags,
-        //     qualifications: data.qulification,
+        //     qualifications: data.qualification,
         //     reporting_manager_id: data.reporting_manager_id,
         //     worker_type: data.worker_type,
         //     unique_id: data.unique_id,
@@ -140,7 +141,7 @@ async function insertDataFromSheet() {
         // })
 
 
-        // await BillingMilestine.create({
+        // await BillingMilestone.create({
         //     billing_milestone: data.billing_milestone,
         //     deliverables: data.deliverables
         // })
@@ -150,3 +151,4 @@ async function insertDataFromSheet() {
 
 
 // insertDataFromSheet()
+

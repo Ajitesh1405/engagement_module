@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database/sequelizeConnection');
 
-const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
+const EngagementMaster = sequelize.define('EngagementMaster',{
     eng_id: { 
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -64,7 +64,7 @@ const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
     },
 
     scope_eng_limitations:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true
     },
 
@@ -183,23 +183,38 @@ const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
         allowNull: true
     },
 
-    level_1_billing_entity_id:{
-        type: Sequelize.INTEGER,
+    level_1_billing_entity_remarks:{
+        type: Sequelize.STRING,
         allowNull: true
     },
 
-    level_2_billing_entity_id:{
-        type: Sequelize.INTEGER,
+    level_1_cr_remarks:{
+        type: Sequelize.STRING,
         allowNull: true
     },
 
-    level_3_billing_entity_id:{
-        type: Sequelize.INTEGER,
+    level_2_billing_entity_remarks:{
+        type: Sequelize.STRING,
         allowNull: true
     },
 
-    reviwer_id:{
-        type: Sequelize.INTEGER,
+    level_2_cr_remarks:{
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+
+    level_3_billing_entity_remarks:{
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+
+    level_3_cr_remarks:{
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+
+    reviewer_id:{
+        type: Sequelize.STRING,
         allowNull: true
     },
     
@@ -211,4 +226,4 @@ const EnagegmentMaster = sequelize.define('EnagegmentMaster',{
 }
 );
 
-module.exports = EnagegmentMaster
+module.exports = EngagementMaster

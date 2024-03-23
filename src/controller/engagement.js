@@ -86,7 +86,7 @@ exports.createEngagement = async(req, res)=>{
             level_1_billing_entity_id: body.level_1_billing_entity_id,
             level_2_billing_entity_id: body.level_2_billing_entity_id,
             level_3_billing_entity_id: body.level_3_billing_entity_id,
-            reviwer_id: body.reviwer_id,
+            reviewer_id: body.reviewer_id,
             status: 1,
         
         },
@@ -120,6 +120,7 @@ exports.createEngagement = async(req, res)=>{
             eng_id: engObject.eng_id,
             billing_currency_id: engObject.currency_id,
             billing_freq_id: engObject.frequency_id,
+            billing_freq_date: Utility.toDate(engObject.billing_freq_date),
             scope_id: workscopeObject.scope_id,
             milestone_id: engObject.milestone_id,
             milestone_percent: engObject.milestone_percent,
