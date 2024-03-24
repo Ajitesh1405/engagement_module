@@ -83,9 +83,12 @@ exports.createEngagement = async(req, res)=>{
             admin_expense_amount: body.admin_expense_amount,
             tax_id: body.tax_id,
             grand_total: body.grand_total,
-            level_1_billing_entity_id: body.level_1_billing_entity_id,
-            level_2_billing_entity_id: body.level_2_billing_entity_id,
-            level_3_billing_entity_id: body.level_3_billing_entity_id,
+            level_1_billing_entity_remarks: body.level_1_billing_entity_remarks,
+            level_1_cr_remarks: body.level_1_cr_remarks,
+            level_2_billing_entity_remarks: body.level_2_billing_entity_remarks,
+            level_2_cr_remarks: body.level_2_cr_remarks,
+            level_3_billing_entity_remarks: body.level_3_billing_entity_remarks,
+            level_3_cr_remarks: body.level_3_cr_remarks,
             reviewer_id: body.reviewer_id,
             status: 1,
         
@@ -154,7 +157,8 @@ exports.createEngagement = async(req, res)=>{
         );
 
 
-        const response = await utility.sendResponse(engagement, STATUS_CODE.CREATE_USER);
+        const response = await utility.sendResponse(engObject, STATUS_CODE.CREATE_USER);
+        console.log("response", response)
         t.commit();
         res.send(response);
 

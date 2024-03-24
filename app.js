@@ -4,6 +4,7 @@ const fileUpload = require('express-fileupload');
 const ENV_VAR = require('./src/common/envConfig');
 const app = express();
 const PORT = ENV_VAR.PORT || 3000;
+const CORS = require('cors');
 const cookieParser = require('cookie-parser');
 const sequelize = require('./src/database/sequelizeConnection');
 const fs = require('fs');
@@ -40,6 +41,7 @@ app.use(fileUpload()); //middleware to get files from req
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
+app.use(CORS());
 
 app.use(function (req, res, next) {
     console.debug(
