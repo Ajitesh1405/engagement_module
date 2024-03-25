@@ -45,7 +45,7 @@ router.post(BASE_API + SIGN_UP, SignupController.signUp);
 
 router.put(BASE_API + CREATE_USER, User.createUser);
 
-router.get(BASE_API + USER_LOGIN,  User.userLogin);
+router.post(BASE_API + USER_LOGIN,  User.userLogin);
 
 router.get(BASE_API + CLIENT_DETAILS,  ClientDetails.clientMaster);
 
