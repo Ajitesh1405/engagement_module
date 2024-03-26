@@ -5,6 +5,7 @@ const authentication = require('../common/authentication')
 const EmpMaster = require('../models/empMaster')
 const Admin = require('../models/adminTable');
 const error = require('express-upload/lib/error');
+const { runInThisContext } = require('vm');
 const Authentication = new authentication();
 
 exports.signUp = async (req, res) => {
@@ -24,6 +25,8 @@ exports.signUp = async (req, res) => {
             raw: true
         });
 
+        console.log("users11", user.dataValues)
+
         if (!user) {
             throw new Error("User is not an employee")
         };
@@ -31,25 +34,28 @@ exports.signUp = async (req, res) => {
         const admin = await Admin.findOne({
             where : { admin_email: email }
         })
+  
+        let adminDetails;
+        if(!admin){
+            const hashedPassword = await bcrypt.hash(password, 10);
 
-        if(admin){
-            throw new Error('Already a user')
+            adminDetails = await Admin.create({
+                admin_email: req.body.email,
+                admin_password: hashedPassword
+            },
+            {
+                transaction: t
+            },
+            {
+                raw: true
+            }
+            );
+        }
+        else{
+            throw new Error("Already a user")
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const adminDetails = await Admin.create({
-            admin_email: req.body.email,
-            admin_password: hashedPassword
-        },
-        {
-            transaction: t
-        },
-        {
-            raw: true
-        }
-        );
-    
+          
         const adminObject = adminDetails.dataValues?.admin_email;
 
         // Generate JWT token
@@ -65,7 +71,7 @@ exports.signUp = async (req, res) => {
     } catch (error) {
         console.log("error", error.message)
         await t.rollback();
-        res.send(error.message)
+        res.status(400).send(error.message)
     }
 }
 

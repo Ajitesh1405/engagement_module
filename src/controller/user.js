@@ -54,6 +54,7 @@ exports.userLogin = async (req, res) => {
             throw new Error("Please enter Email and Password")
         }
 
+        console.log("email", emailId)
         const userFound = await Admin.findOne({
             where: { admin_email: emailId },
             attributes: ['admin_email', 'admin_password'],
@@ -70,17 +71,13 @@ exports.userLogin = async (req, res) => {
             throw new Error("Either Username or Password is incorrect")
         }
 
-        // const sqlQuery = `SELECT * FROM EmpMasters`
-
-        // sequelize.query(sqlQuery).then((data)=> console.log(data[0][0])).catch((error)=> console.log(error.message))
-
         const userJwt = await Authentication.generateJwtToken(userFound.admin_email);
-        res.send({
+        res.status(200).send({
             message: "User has been logged-in",
             token: userJwt,
         })
     } catch (error) {
         console.log("error", error.message);
-        res.send(error.message)
+        res.status(400).send("Either username or password is incorrect")
     }
 }
