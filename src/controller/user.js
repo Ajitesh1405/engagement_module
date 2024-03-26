@@ -72,8 +72,21 @@ exports.userLogin = async (req, res) => {
         }
 
         const userJwt = await Authentication.generateJwtToken(userFound.admin_email);
+
+        const empObject = await EmpMaster.findOne({
+            attributes : ["employee_number", "first_name", "middle_name", "last_name"],
+            where : {email: emailId },
+            raw: true
+        })
+
+        let fullName = empObject.first_name;
+        if (empObject.middle_name) {
+         fullName += ' ' + empObject.middle_name;
+        }
+        fullName += ' ' + empObject.last_name;
         res.status(200).send({
             message: "User has been logged-in",
+            user: fullName,
             token: userJwt,
         })
     } catch (error) {

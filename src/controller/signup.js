@@ -55,7 +55,19 @@ exports.signUp = async (req, res) => {
             throw new Error("Already a user")
         }
 
-          
+        const empObject = await EmpMaster.findOne({
+            attributes : ["employee_number", "first_name", "middle_name", "last_name"],
+            where : {email: email },
+            raw: true
+        })
+        console.log("employee", empObject)
+
+        let fullName = empObject.first_name;
+        if (empObject.middle_name) {
+         fullName += ' ' + empObject.middle_name;
+        }
+        fullName += ' ' + empObject.last_name;
+        
         const adminObject = adminDetails.dataValues?.admin_email;
 
         // Generate JWT token
@@ -65,6 +77,7 @@ exports.signUp = async (req, res) => {
         await t.commit();
         res.status(201).send({
             message: "User has been created",
+            user: fullName,
             token: userJwt
         })
 
