@@ -10,7 +10,8 @@ const ROUTES ={
     ENGAGEMENT_EMPLOYEE_NAME: '/engagement_employees',
     BILLING_EXPENSES: '/billing_expenses',
     BILLING_TEMPLATES: '/billing_templates',
-    CREATE_ENGAGEMENT: '/create_engagement'
+    CREATE_ENGAGEMENT: '/create_engagement',
+    DOCUMENT_GENERATION: '/document_generation'
 
 }
 

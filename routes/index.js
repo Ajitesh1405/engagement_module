@@ -8,7 +8,8 @@ const User = require('../src/controller/user');
 const ClientDetails = require('../src/controller/clientDetails');
 const Billing = require('../src/controller/billing');
 const Engagement = require('../src/controller/engagement');
-const { authFunction } = require('../src/middlewares/authorization')
+const { authFunction } = require('../src/middlewares/authorization');
+const DocumentGenerator = require('../src/controller/docgen')
 
 // static route
 router.get('/', (req, res)=>{
@@ -28,7 +29,8 @@ const {
         ENGAGEMENT_EMPLOYEE_NAME,
         BILLING_EXPENSES,
         BILLING_TEMPLATES,
-        CREATE_ENGAGEMENT
+        CREATE_ENGAGEMENT,
+        DOCUMENT_GENERATION
     },
     PARAMS
 
@@ -61,6 +63,7 @@ router.get(BASE_API + BILLING_TEMPLATES, authFunction, Billing.billingTemplates)
 
 router.post(BASE_API + CREATE_ENGAGEMENT, Engagement.createEngagement)
 
+router.get(BASE_API + DOCUMENT_GENERATION, DocumentGenerator.doc)
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 
 module.exports = router
