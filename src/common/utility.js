@@ -29,6 +29,13 @@ class Utility {
         // Return the formatted date string
         return FormattedDate;
     }
+
+    static formattedDate(date){
+        const momentDate = moment(date);
+        const FormattedDate = momentDate.format('YYYY-MM-DD');
+
+        return FormattedDate
+    }
 }
 
 module.exports = Utility

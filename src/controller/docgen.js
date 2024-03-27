@@ -4,10 +4,11 @@ const Docxtemplater = require('docxtemplater');
 const path = require('path');
 const sequelize = require('../database/sequelizeConnection');
 const DBQueries = require('../database/dbQueries');
+const Utility = require('../common/utility');
 
 exports.doc = async (req, res) => {
     // Load the Word document template
-    const filePath = path.join(__dirname, 'template/EL-template-final.docx')
+    const filePath = path.join(__dirname, 'Template/EL-template-final.docx')
     const content = fs.readFileSync(filePath, 'binary');
 
     // console.log("content", content)
@@ -33,8 +34,13 @@ exports.doc = async (req, res) => {
             nest: true
         }
     );
+    console.log("generateData", generateData)
+    if(generateData.length == 0){
+        throw new Error("Engagement not found")
+    }
     const genObject = generateData[0]
     console.log("genObject", genObject);
+    
 
     const OPEInclusive = false;
 
@@ -45,7 +51,7 @@ exports.doc = async (req, res) => {
         ClientOrganisationName: genObject.client_organisation_name,
         GroupBillingEntity: genObject.group_billing_entity,
         addressofbillingentity: genObject.billing_entity_address,
-        EngagementDate: genObject.engagement_date,
+        EngagementDate: Utility.formattedDate(genObject.engagement_date),
         ClientRepresentative: genObject.client_representative,
         ClientOrganizationName: genObject.client_organisation_name,
         ClientAddress: genObject.client_address,
@@ -58,8 +64,8 @@ exports.doc = async (req, res) => {
         EngTeamMember: genObject.engagement_employee,
         Designation: genObject.designation,
         FinancialYear: genObject.financial_year,
-        StartingDate: genObject.eng_starting_date,
-        DeliverableDate: genObject.eng_deliverables_date,
+        StartingDate: Utility.formattedDate(genObject.eng_starting_date),
+        DeliverableDate: Utility.formattedDate(genObject.eng_deliverables_date),
         L1EnagagementManagerName: genObject.L1EnagagementManagerName,
         ClientSPOCL1Name: genObject.ClientSPOCL1Name,
         L2EnagagementManagerName: genObject.L2EnagagementManagerName,
@@ -69,7 +75,7 @@ exports.doc = async (req, res) => {
         Heading: genObject.heading,
         SubHeading: genObject.sub_heading,
         Deliverables: genObject.deliverables,
-        DeliveryDate: genObject.delivery_date,
+        DeliveryDate: Utility.formattedDate(genObject.delivery_date),
         OurFees: genObject.our_fees,
         BillingSchedule: genObject.billing_schedule,
         BillingMilestone: genObject.billing_milestone,
@@ -80,7 +86,7 @@ exports.doc = async (req, res) => {
         OpeAmount: genObject.ope_amount,
         AdminPercent: genObject.admin_percent,
         AdminAmount: genObject.admin_amount,
-        OPEInclusive: OPEInclusive ? 'OPE Inclusive' : 'OPE Not Inclusive'
+        OPEInclusive: genObject.ope_percent ? 'OPE Inclusive' : 'OPE Not Inclusive'
     });
 
     try {
