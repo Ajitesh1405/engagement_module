@@ -63,7 +63,7 @@ router.get(BASE_API + BILLING_TEMPLATES, authFunction, Billing.billingTemplates)
 
 router.post(BASE_API + CREATE_ENGAGEMENT, Engagement.createEngagement)
 
-router.get(BASE_API + DOCUMENT_GENERATION, DocumentGenerator.doc)
+router.post(BASE_API + DOCUMENT_GENERATION, DocumentGenerator.doc)
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 
 module.exports = router
