@@ -11,7 +11,8 @@ const ROUTES ={
     BILLING_EXPENSES: '/billing_expenses',
     BILLING_TEMPLATES: '/billing_templates',
     CREATE_ENGAGEMENT: '/create_engagement',
-    DOCUMENT_GENERATION: '/document_generation'
+    DOCUMENT_GENERATION: '/document_generation',
+    DOWNLOAD_FILE: '/download_file'
 
 }
 

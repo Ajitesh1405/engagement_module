@@ -30,7 +30,8 @@ const {
         BILLING_EXPENSES,
         BILLING_TEMPLATES,
         CREATE_ENGAGEMENT,
-        DOCUMENT_GENERATION
+        DOCUMENT_GENERATION,
+        DOWNLOAD_FILE
     },
     PARAMS
 
@@ -63,7 +64,9 @@ router.get(BASE_API + BILLING_TEMPLATES, authFunction, Billing.billingTemplates)
 
 router.post(BASE_API + CREATE_ENGAGEMENT, Engagement.createEngagement)
 
-router.post(BASE_API + DOCUMENT_GENERATION, DocumentGenerator.doc)
+router.get(BASE_API + DOCUMENT_GENERATION, DocumentGenerator.doc)
+
+router.get(BASE_API + DOWNLOAD_FILE, DocumentGenerator.download);
 // router.get(BASE_API + PERSON_INCHARGE_DETAILS, BillingEntityDetails.personInChargeDetails)
 
 module.exports = router

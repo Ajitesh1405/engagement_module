@@ -112,3 +112,20 @@ exports.doc = async (req, res) => {
 
 
 }
+
+exports.download = async (req, res) =>{
+    try {
+        if(!req.query.client_name){
+            throw new Error("Please provide Client Name");
+        }
+
+        const clientName = req.query.client_name;
+        const fileName = `updated-document-${clientName}.docx`;
+        const filePath = path.join(__dirname, 'download', fileName);
+
+        res.status(200).download(filePath)
+    } catch (error) {
+        console.log("error", error);
+        res.status(400).send(error.message)
+    }
+}
