@@ -52,6 +52,8 @@ module.exports = {
 		client_table.key_person_designation as client_representative_designation,
 		client_table.registered_address as client_address,
 		service_table.billable_service,
+		service_table.service_line,
+		service_table.practice_vertical as department,
 		master_table.eng_date as engagement_date,
 		master_table.bg_of_client_entity as background_of_client_entity,
 		master_table.bg_of_the_service_and_eng as background_of_the_billable_service_and_engagement,
@@ -80,7 +82,8 @@ module.exports = {
 		master_table.ope_id as ope_percent,
 		master_table.ope_amount as ope_amount,
 		master_table.admin_id as admin_percent,
-		master_table.admin_expense_amount as admin_amount
+		master_table.admin_expense_amount as admin_amount,
+		master_table.grand_total
 		from
 		EngagementMasters as master_table
 		inner join

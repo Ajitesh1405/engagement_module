@@ -7,89 +7,94 @@ const DBQueries = require('../database/dbQueries');
 const Utility = require('../common/utility');
 
 exports.doc = async (req, res) => {
-    // Load the Word document template
-    const filePath = path.join(__dirname, 'Template/EL-template-final.docx')
-    const content = fs.readFileSync(filePath, 'binary');
-
-    // console.log("content", content)
-
-    const zip = new PizZip(content);
-
-    const doc = new Docxtemplater(zip, {
-        paragraphLoop: true,
-        linebreaks: true,
-        delimiters: {
-            start: '<<',
-            end: '>>'
-        }
-    });
-
-    let engId = req.query.eng_id || 1;
-
-    const generateData = await sequelize.query(
-        DBQueries.GENERATE_ENGAGEMENT(engId),
-        {
-            type: sequelize.QueryTypes.SELECT,
-            bind: { engId },
-            nest: true
-        }
-    );
-    console.log("generateData", generateData)
-    if(generateData.length == 0){
-        throw new Error("Engagement not found")
-    }
-    const genObject = generateData[0]
-    console.log("genObject", genObject);
-    
-
-    const OPEInclusive = false;
-
-    // Set the templateVariables
-    doc.setData({
-        DivisionName: 'SPC ',
-        BillableServices: genObject.billable_service,
-        ClientOrganisationName: genObject.client_organisation_name,
-        GroupBillingEntity: genObject.group_billing_entity,
-        addressofbillingentity: genObject.billing_entity_address,
-        EngagementDate: Utility.formattedDate(genObject.engagement_date),
-        ClientRepresentative: genObject.client_representative,
-        ClientOrganizationName: genObject.client_organisation_name,
-        ClientAddress: genObject.client_address,
-        Branch: genObject.billing_entity_branch,
-        BillingEntityPAN: genObject.billing_entity_pan,
-        BillingEntityGST: genObject.billing_entity_gst,
-        Backgroundofthecliententity: genObject.background_of_client_entity,
-        BackgroundoftheBillableServiceandEngagement: genObject.background_of_the_billable_service_and_engagement,
-        EngRole: genObject.role_name,
-        EngTeamMember: genObject.engagement_employee,
-        Designation: genObject.designation,
-        FinancialYear: genObject.financial_year,
-        StartingDate: Utility.formattedDate(genObject.eng_starting_date),
-        DeliverableDate: Utility.formattedDate(genObject.eng_deliverables_date),
-        L1EnagagementManagerName: genObject.L1EnagagementManagerName,
-        ClientSPOCL1Name: genObject.ClientSPOCL1Name,
-        L2EnagagementManagerName: genObject.L2EnagagementManagerName,
-        CleintSPOCL2Name: genObject.CleintSPOCL2Name,
-        L3EngagementPartnerName: genObject.L3EngagementPartnerName,
-        CleintSPOCL3Name: genObject.CleintSPOCL3Name,
-        Heading: genObject.heading,
-        SubHeading: genObject.sub_heading,
-        Deliverables: genObject.deliverables,
-        DeliveryDate: Utility.formattedDate(genObject.delivery_date),
-        OurFees: genObject.our_fees,
-        BillingSchedule: genObject.billing_schedule,
-        BillingMilestone: genObject.billing_milestone,
-        MilestonePercent: genObject.milestone_percent,
-        MilestoneDeliverables: genObject.milestone_deliverables,
-        MilestoneFees: genObject.milestone_fees,
-        OPEPercent: genObject.ope_percent,
-        OpeAmount: genObject.ope_amount,
-        AdminPercent: genObject.admin_percent,
-        AdminAmount: genObject.admin_amount,
-        OPEInclusive: genObject.ope_percent ? 'OPE Inclusive' : 'OPE Not Inclusive'
-    });
-
     try {
+        // Load the Word document template
+        const filePath = path.join(__dirname, 'Template/EL-template-Final.docx')
+        const content = fs.readFileSync(filePath, 'binary');
+
+        // console.log("content", content)
+
+        const zip = new PizZip(content);
+
+        const doc = new Docxtemplater(zip, {
+            paragraphLoop: true,
+            linebreaks: true,
+            delimiters: {
+                start: '<<',
+                end: '>>'
+            }
+        });
+
+        let engId = req.query.eng_id || 1;
+
+        const generateData = await sequelize.query(
+            DBQueries.GENERATE_ENGAGEMENT(engId),
+            {
+                type: sequelize.QueryTypes.SELECT,
+                bind: { engId },
+                nest: true
+            }
+        );
+        console.log("generateData", generateData)
+        if (generateData.length == 0) {
+            throw new Error("Engagement not found")
+        }
+        const genObject = generateData[0]
+        if (!genObject) {
+            throw new Error("No details found")
+        }
+
+        // Set the templateVariables
+        doc.setData({
+            DivisionName: 'SPC ',
+            BillableServices: genObject.billable_service,
+            Department: genObject.department,
+            ServiceLine: genObject.service_line,
+            ClientOrganisationName: genObject.client_organisation_name,
+            ClientDesignation: genObject.client_representative_designation? genObject.client_representative_designation : '',
+            GroupBillingEntity: genObject.group_billing_entity,
+            addressofbillingentity: genObject.billing_entity_address,
+            EngagementDate: Utility.formattedDate(genObject.engagement_date),
+            ClientRepresentative: genObject?.client_representative || '',
+            ClientOrganizationName: genObject.client_organisation_name,
+            ClientAddress: genObject.client_address,
+            Branch: genObject.billing_entity_branch,
+            BillingEntityPAN: genObject.billing_entity_pan,
+            BillingEntityGST: genObject.billing_entity_gst,
+            Backgroundofthecliententity: genObject.background_of_client_entity,
+            BackgroundoftheBillableServiceandEngagement: genObject.background_of_the_billable_service_and_engagement,
+            EngRole: genObject.role_name,
+            EngTeamMember: genObject.engagement_employee,
+            Designation: genObject.designation? genObject.designation : '',
+            FinancialYear: genObject.financial_year,
+            StartingDate: Utility.formattedDate(genObject.eng_starting_date),
+            DeliverableDate: Utility.formattedDate(genObject.eng_deliverables_date),
+            L1EnagagementManagerName: genObject.L1EnagagementManagerName,
+            ClientSPOCL1Name: genObject.ClientSPOCL1Name,
+            L2EnagagementManagerName: genObject.L2EnagagementManagerName,
+            CleintSPOCL2Name: genObject.CleintSPOCL2Name,
+            L3EngagementPartnerName: genObject.L3EngagementPartnerName,
+            CleintSPOCL3Name: genObject.CleintSPOCL3Name,
+            Heading: genObject.heading,
+            SubHeading: genObject.sub_heading,
+            Deliverables: genObject.deliverables,
+            DeliveryDate: Utility.formattedDate(genObject.delivery_date),
+            OurFees: genObject.our_fees,
+            BillingSchedule: genObject.billing_schedule,
+            BillingMilestone: genObject.billing_milestone,
+            MilestonePercent: genObject.milestone_percent,
+            MilestoneDeliverables: genObject.milestone_deliverables,
+            MilestoneFees: genObject.milestone_fees,
+            OPEPercent: genObject.ope_percent,
+            OpeAmount: genObject.ope_amount,
+            AdminPercent: genObject.admin_percent,
+            AdminAmount: genObject.admin_amount,
+            OPEInclusive: genObject.ope_percent ? 'OPE Inclusive' : 'OPE Not Inclusive',
+            ListinBulletForm: '',
+            TextFieldnewfield: '',
+            GrandTotal: genObject.grand_total
+        });
+
         // Apply the replacements
         doc.render();
         const buf = doc.getZip().generate({ type: 'nodebuffer' });
@@ -109,19 +114,20 @@ exports.doc = async (req, res) => {
         // Write the updated document
         fs.writeFileSync(updatedDocPath, buf);
         res.status(201).send("Document has been generated")
-    }
-    catch (error) {
+
+    } catch (error) {
         // Catch rendering errors
         console.error(error);
         res.status(400).send('Unable to generate document')
     }
 
-
 }
 
-exports.download = async (req, res) =>{
+
+
+exports.download = async (req, res) => {
     try {
-        if(!req.query.client_name){
+        if (!req.query.client_name) {
             throw new Error("Please provide Client Name");
         }
 
